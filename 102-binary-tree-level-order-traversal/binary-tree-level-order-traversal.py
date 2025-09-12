@@ -13,24 +13,16 @@ class Solution(object):
             traversal = []
             queue = deque()
             queue.append(root)
-
             while len(queue) != 0:
-                l_nodes = []
                 l_vals = []
-                # Getting the nodes in the level
-                while len(queue) != 0:
-                    l_nodes.append(queue.popleft())
-                
-                # Preparing the next level in the queue
-                for i in range(len(l_nodes)):
-                    if l_nodes[i].left != None:
-                        queue.append(l_nodes[i].left)
-                    
-                    if l_nodes[i].right != None:
-                        queue.append(l_nodes[i].right)
-                    # Storing the values
-                    l_vals.append(l_nodes[i].val)
-                
+                no_nodes = len(queue)
+                for i in range(no_nodes):
+                    node = queue.popleft()
+                    if node.left != None:
+                        queue.append(node.left)
+                    if node.right != None:
+                        queue.append(node.right)
+                    l_vals.append(node.val)
                 traversal.append(l_vals)
             
             return traversal
