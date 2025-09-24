@@ -13,36 +13,20 @@ class Solution(object):
         while len(q) != 0:
             no_nodes = len(q)
             prev = None
-            if l % 2 == 0:
-                # even level
-                for i in range(no_nodes):
-                    node = q.popleft()
-                    if node.val % 2 != 0:
-                        if prev is None or prev < node.val:
-                            if node.left != None:
-                                q.append(node.left)
-                            if node.right != None:
-                                q.append(node.right)
-                            prev = node.val
-                        else:
-                            return False
-                    else:
+            for i in range(no_nodes):
+                node = q.popleft()
+                if l % 2 == 0:
+                    if node.val % 2 == 0 or (prev is not None and prev >= node.val):
                         return False
-            else:
-                # odd level
-                for i in range(no_nodes):
-                    node = q.popleft()
-                    if node.val % 2 == 0:
-                        if prev is None or prev > node.val:
-                            if node.left != None:
-                                q.append(node.left)
-                            if node.right != None:
-                                q.append(node.right)
-                            prev = node.val
-                        else:
-                            return False
-                    else:
+                else:
+                    if node.val % 2 != 0 or (prev is not None and prev <= node.val):
                         return False
+                
+                if node.left != None:
+                     q.append(node.left)
+                if node.right != None:
+                    q.append(node.right)
+                prev = node.val
 
             l += 1
         
