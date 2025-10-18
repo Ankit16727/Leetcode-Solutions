@@ -12,6 +12,8 @@ class Solution(object):
                     cnt1 += 1
                 if size == windowSize:
                     minSwaps = windowSize - cnt1 if minSwaps == None else min(minSwaps, windowSize - cnt1)
+                    if minSwaps == 0:
+                        return 0
                     if nums[l] == 1:
                         cnt1 -= 1
                     l += 1
