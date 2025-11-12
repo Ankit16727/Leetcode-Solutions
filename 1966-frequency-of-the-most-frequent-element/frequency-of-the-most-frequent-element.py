@@ -9,7 +9,6 @@ class Solution(object):
                 l += 1
                 curr -= (r - l + 1) * pref
             max_freq = max(max_freq, r - l + 1)
-        
         return max_freq
             
 
